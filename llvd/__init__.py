@@ -1,4 +1,4 @@
-##!/usr/bin/env  python3
+# !/usr/bin/env  python3
 
 import click
 import sys
@@ -10,10 +10,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import WebDriverException
 import threading
 import time
-import config
 import re
-from core.app import App
-from click_spinner import spinner
+from llvd.app import App
+from llvd import config
 
 BOLD = "\033[1m"  # Makes the text bold
 RED_COLOR = "\u001b[31m"  # Makes the text red
@@ -44,8 +43,8 @@ def create_browser():
 def main(course):
     """
     Linkedin learning video downloader cli tool
+
     example: llvd --course "Java 8 Essential"
-    Remember to set login credentials in the config file
     """
     if len(sys.argv) == 1:
         click.echo(f"{RED_COLOR}{BOLD}Missing required arguments: llvd --help")
@@ -57,12 +56,11 @@ def main(course):
         "-&", ""
     ).replace(".", "-")
     email = click.prompt("Please enter your linkedin email address")
-    password = click.prompt("Enter your Linkedin Password: ", hide_input=True)
+    password = click.prompt("Enter your Linkedin Password", hide_input=True)
     try:
         browser = create_browser()
     except WebDriverException:
         click.echo(f"{RED_COLOR}{BOLD}Please install chromedriver")
         sys.exit(0)
-    with spinner():
-        llvd = App(browser, email, password, link)
-        llvd.run()
+    llvd = App(browser, email, password, link)
+    llvd.run()

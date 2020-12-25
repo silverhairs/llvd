@@ -15,6 +15,7 @@
 | ✅     | nice progress bar              |
 | ✅     | resume failed downloads        |
 | ✅     | skip already downloaded videos |
+| ✅     | all platforms                  |
 
 ## Prerequisites
 
@@ -23,10 +24,10 @@
 
 ## Installation
 
-    $ git clone https://github.com/knowbee/llvd
-    $ cd llvd
-    $ pip install --editable .
+    $ pip --no-cache-dir install llvd
+
 If you have multiple versions of python installed in your system, use **pip3** instead.
+
 ## Example
 
 Use llvd anywhere on your machine and download your desired course
